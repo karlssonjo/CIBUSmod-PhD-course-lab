@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+.vscode
+.venv*
+
+# Jupyter notebook
+.ipynb_checkpoints/
+
+# Excel temp files
+~$*
+
+# CIBUSmod output files
+*.sqlite
+*.log
