@@ -166,9 +166,18 @@ def do_run(session, scn_year):
         
         # Distribute animals and crops
         # Make optimisation problem
-        geodist.make(use_cons=[1,2,3,4,5,6,7])
+        geodist.make(use_cons=[1,2,3,4,5,6,7], verbose=True)
         # Solve optimisation problem
-        geodist.solve(verbose=True)
+        try:
+            geodist.solve(verbose=True)
+        except:
+            cm.helpers.induce_beef_exports(
+                demand = demand,
+                herds = herds,
+                tol = 5e-2
+            )
+            geodist.make(use_cons=[1,2,3,4,5,6,7], verbose=True)
+            geodist.solve(verbose=True)
         
         # Redistribute feeds (not yet implemented) and calculate enteric CH4 emissions
         feed_mgmt.calculate2(verbose=True)
